@@ -1,0 +1,71 @@
+#------------------------------------------------------------------------------
+#  ANDOUILLE Artifact, MAGOUILLES Project, Distributed under The MIT License.
+#  Copyright (c) 2019 Hubert Montas
+#------------------------------------------------------------------------------
+
+#------------------------------------------------------------------------------
+#
+# iCE40UP5K-SG48
+#
+# (eg.  1- iCE40 UltraPlus Breakout Board, Rev. A, iCE40UP5K-B-EVN,
+#	2- Gnarly Grey UPDuino V2.0)
+#------------------------------------------------------------------------------
+
+# 12 MHz clock
+set_io -nowarn			p35	35	# IOT_46B_G0,	Bank 0, 3.3V	clk
+
+# RS232
+set_io -nowarn	-pullup yes 	p06	6	# IOB_13B,  	Bank 1, 3.3V	uart_rx	   (EVN)
+set_io -nowarn			p09	9	# IOB_16A, 	Bank 1, 3.3V	uart_tx	   (EVN)
+
+# SPI Flash
+set_io -nowarn			p14	14	# IOB_32A,	Bank 1, 3.3V	FLASH_MOSI (+uar-tx UPD)
+set_io -nowarn			p15	15	# IOB_34A,	Bank 1, 3.3V	FLASH_SCK  (+uar-rx UPD)
+set_io -nowarn			p17	17	# IOB_33B,	Bank 1, 3.3V	FLASH_MISO
+
+# GPIO pins
+set_io -nowarn	-pullup yes	p16	16	# IOB_35B,	Bank 1, 3.3V	FLASH_CSn
+set_io -nowarn	-pullup yes	p39	39	# RGB0,		Bank 0, 3.3V	blue  LED  (UPD green)
+set_io -nowarn	-pullup yes	p40	40	# RGB1,		Bank 0, 3.3V	green LED  (UPD blue)
+set_io -nowarn	-pullup yes	p41	41	# RGB2,		Bank 0, 3.3V	red   LED
+set_io -nowarn	-pullup yes	p12	12	# IOB_22A,	Bank 1, 3.3V
+set_io -nowarn	-pullup yes	p21	21	# IOB_23B,	Bank 1, 3.3V
+set_io -nowarn	-pullup yes	p13	13	# IOB_24A,	Bank 1, 3.3V
+set_io -nowarn	-pullup yes	p20	20	# IOB_25B_G3,	Bank 1, 3.3V	-- TP4 on UPDuino
+
+# other pins, Bank 1
+set_io -nowarn			p19	19	# IOB_29B,	Bank 1, 3.3V
+set_io -nowarn			p18	18	# IOB_31B,	Bank 1, 3.3V
+set_io -nowarn			p11	11	# IOB_20A,	Bank 1, 3.3V
+set_io -nowarn			p10	10	# IOB_18A,	Bank 1, 3.3V	-- TP3 on UPDuino
+
+# other pins, Bank 2
+set_io -nowarn			p04	 4	# IOB_8A,	Bank 2, 3.3V
+set_io -nowarn			p03	 3	# IOB_9B,	Bank 2, 3.3V
+set_io -nowarn			p48	48	# IOB_4A,	Bank 2, 3.3V
+set_io -nowarn			p45	45	# IOB_5B,	Bank 2, 3.3V
+set_io -nowarn			p47	47	# IOB_2A,	Bank 2, 3.3V
+set_io -nowarn			p44	44	# IOB_3B_G6,	Bank 2, 3.3V
+set_io -nowarn			p46	46	# IOB_0A,	Bank 2, 3.3V
+set_io -nowarn			p02	 2	# IOB_6A,	Bank 2, 3.3V
+
+# other pins, Bank 0
+set_io -nowarn			p23	23	# IOT_37A,	Bank 0, 3.3V
+set_io -nowarn			p25	25	# IOT_36B,	Bank 0, 3.3V
+set_io -nowarn			p26	26	# IOT_39A,	Bank 0, 3.3V
+set_io -nowarn			p27	27	# IOT_38B,	Bank 0, 3.3V
+set_io -nowarn			p32	32	# IOT_43A,	Bank 0, 3.3V
+set_io -nowarn			p31	31	# IOT_42B,	Bank 0, 3.3V
+set_io -nowarn			p37	37	# IOT_45A_G1,	Bank 0, 3.3V
+set_io -nowarn			p34	34	# IOT_44B,	Bank 0, 3.3V
+set_io -nowarn			p43	43	# IOT_49A,	Bank 0, 3.3V
+set_io -nowarn			p36	36	# IOT_48B,	Bank 0, 3.3V
+set_io -nowarn			p42	42	# IOT_51A,	Bank 0, 3.3V
+set_io -nowarn			p38	38	# IOT_50B,	Bank 0, 3.3V
+set_io -nowarn			p28	28	# IOT_41A,	Bank 0, 3.3V
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+#------------------------------------------------------------------------------
+#  ANDOUILLE Artifact, MAGOUILLES Project, Distributed under The MIT License.
+#  Copyright (c) 2019 Hubert Montas
+#------------------------------------------------------------------------------
+
+#------------------------------------------------------------------------------
+#
+# iCE40HX8K-CT256
+#
+# (eg.  1- iCE40-HX8K Breakout Board, Rev. A, iCE40HX8K-B-EVN)
+#------------------------------------------------------------------------------
+
+# 12 MHz clock
+set_io -nowarn			t26	J3	# PIO3_26,GBIN6	Bank 3, 3.3V	clk
+
+# RS232
+set_io -nowarn	-pullup yes 	p14	B10	# PIO0_14,  	Bank 0, 3.3V	uart_rx
+set_io -nowarn			p13	B12	# PIO0_13, 	Bank 0, 3.3V	uart_tx
+
+# SPI Flash
+set_io -nowarn			s00	P12	# PIOS_00,	SPI, 3.3V	FLASH_MOSI
+set_io -nowarn			s01	P11	# PIOS_01,	SPI, 3.3V	FLASH_MISO
+set_io -nowarn			s02	R11	# PIOS_02,	SPI, 3.3V	FLASH_SCK
+
+set_io -nowarn			s03	R12	# PIOS_03,	SPI, 3.3V	FLASH_SS
+
+# GPIO pins
+set_io -nowarn	-pullup yes	p39	B5	# PIO0_39,	Bank 0, 3.3V	LED0, D9
+set_io -nowarn	-pullup yes	p41	B4	# PIO0_41,	Bank 0, 3.3V	LED1, D8
+set_io -nowarn	-pullup yes	p42	A2	# PIO0_42,	Bank 0, 3.3V	LED2, D7
+set_io -nowarn	-pullup yes	p44	A1	# PIO0_44,	Bank 0, 3.3V	LED3, D6
+set_io -nowarn	-pullup yes	p45	C5	# PIO0_45,	Bank 0, 3.3V	LED4, D5
+set_io -nowarn	-pullup yes	p46	C4	# PIO0_46,	Bank 0, 3.3V	LED5, D4
+set_io -nowarn	-pullup yes	p47	B3	# PIO0_47,	Bank 0, 3.3V	LED6, D3
+set_io -nowarn	-pullup yes	p51	C3	# PIO0_51,	Bank 0, 3.3V	LED7, D2
+
+
+
+
+
+
+
