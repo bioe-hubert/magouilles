@@ -152,7 +152,7 @@ For decoding and dispatch purposes, instructions are grouped into 16 types
 |  4  | store  |  5  | custom1:	store with register offset |
 |  6  | op-reg	(incl. mul/mulh...) | 7  | lui |
 |  8  | csr1: mret, wfi, ecall/ebreak | 9 | csr2: rdcycle(h)/rdmcycle(h) (read-only) |
-| 10  | csr3: csrr(w|s|c) for mie, mtvec, mip, mepc | 11 | csr4: csrr for mcause, mtval (read-only) |
+| 10  | csr3: csrr(w/s/c) for mie, mtvec, mip, mepc | 11 | csr4: csrr for mcause, mtval (read-only) |
 | 12  | conditonal branch | 13 | jalr |
 | 14  | jal    |  15 | custom3 (unused) |
 
