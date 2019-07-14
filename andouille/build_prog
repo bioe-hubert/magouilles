@@ -1,0 +1,41 @@
+#!/bin/sh
+
+# eg.	./build_prog 32 up5kbevn
+#	./build_prog 32 upduino
+#	./build_prog 64 hx8kbevn
+#	./build_prog 32
+#	./build_prog 64
+
+if [ "$#" -gt 1 ]; then
+
+  # replace boot code place-holder with actual boot code
+  echo "------------------------------------------------------------------------"
+  echo "updating boot code to bin/boot$1.hex before building bitstream"
+  echo "------------------------------------------------------------------------"
+  icebram bin/boot$1ph.hex bin/boot$1.hex < bin/$2.asc > bin/a.asc
+
+  # build bitstream
+  echo "Building riscv-$1 bitstream with boot code into bin/$2.bin"
+  echo "------------------------------------------------------------------------"
+  icepack bin/a.asc bin/$2.bin
+
+  # write riscv configuration bitstream and firmware to fpga board flash
+  echo "programming bin/$2.bin (riscv-$1) into chip flash"
+  echo "------------------------------------------------------------------------"
+  iceprog bin/$2.bin
+
+  # clean up
+  rm bin/a.asc
+
+fi
+
+# write firmware to fpga board flash
+echo "------------------------------------------------------------------------"
+echo "programming bin/aps$1.bin (riscv-$1) app into flash (at 1MB)"
+echo "------------------------------------------------------------------------"
+iceprog -o 1M bin/aps$1.bin
+
+echo "------------------------------------------------------------------------"
+
+
+

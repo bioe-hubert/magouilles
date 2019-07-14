@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# eg.	./build_boot 32
+#	./build_boot 64
+
+# assemble and link
+if [ $1 == 32 ]; then
+  link_text_at=0xf0000000
+else
+  link_text_at=0xf000000000000000
+fi
+riscv$1-unknown-elf-as		-Iboot -Iaps -march=rv$1im -o bin/a.o   boot/boot$1.s
+riscv$1-unknown-elf-ld		-Map bin/boot$1.map -Ttext=$link_text_at -o bin/a.elf bin/a.o
+riscv$1-unknown-elf-objcopy	-O binary bin/a.elf bin/boot$1.bin
+
+# make hex file for fpga initialization
+boot/bin2hex.py $1 bin/boot$1.bin bin/boot$1.hex
+
+# clean up
+rm bin/a.o
+rm bin/a.elf
+
+
+

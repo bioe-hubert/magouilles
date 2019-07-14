@@ -1,0 +1,59 @@
+#!/bin/sh
+
+# ------------------------------------------------------------------------------
+# yosys 0.8+ (04/03/2019) with ABCREV = 3709744 (updated in Makefile)
+# ------------------------------------------------------------------------------
+# eg.	./build_riscv 32 up5k up5kbevn
+#	./build_riscv 32 up5k upduino
+#	./build_riscv 64 hx8k hx8kbevn 4
+# ------------------------------------------------------------------------------
+
+# get/adjust parameters
+if [ $1 == 32 ]; then
+  num_boot_lines=512
+else
+  num_boot_lines=256
+fi
+if [ "$#" -lt 4 ]; then
+  s=2				# default seed = 2
+else
+  s=$4
+fi
+if [ "$#" -lt 5 ]; then
+  f=16				# default target frequency = 16 MHz
+else
+  f=$5
+fi
+
+# generate dummy boot code
+echo "----------------------------------------------------------"
+echo "Generating boot code place-holder for" $3 "riscv-"$1
+echo "CMD: icebram -g $1 $num_boot_lines > bin/boot$1ph.hex"
+echo "----------------------------------------------------------"
+icebram -g $1 $num_boot_lines > bin/boot$1ph.hex
+
+# synthesize
+echo "Synthesis started for " $3 " (takes a few minutes)"
+echo "CMD: yosys -q -p 'synth_ice40 -dsp -top top -json bin/a.json' riscv/$3.v riscv/soc.v riscv/cpu.v riscv/dummy.v riscv/uart.v riscv/spi.v riscv/gpio.v riscv/clocks.v riscv/bram.v riscv/spram.v"
+echo "----------------------------------------------------------"
+yosys -q -p 'synth_ice40 -dsp -top top -json bin/a.json' riscv/$3.v riscv/soc.v riscv/cpu.v riscv/dummy.v riscv/uart.v riscv/spi.v riscv/gpio.v riscv/clocks.v riscv/bram.v riscv/spram.v
+
+# place-and-route
+echo "----------------------------------------------------------"
+echo "Place-and-route started for " $3 " (takes several minutes)"
+echo "CMD: nextpnr-ice40 --freq $f --seed $s --$2 --asc bin/$3.asc --pcf riscv/$2.pcf --json bin/a.json"
+echo "----------------------------------------------------------"
+nextpnr-ice40 --freq $f --seed $s --$2 --asc bin/$3.asc --pcf riscv/$2.pcf --json bin/a.json
+
+# check timing
+echo "----------------------------------------------------------"
+echo "Checking timing for " $3
+echo "CMD: icetime -d $2 -mtr bin/$3.rpt bin/$3.asc"
+echo "----------------------------------------------------------"
+icetime -d $2 -mtr bin/$3.rpt bin/$3.asc
+
+# clean up
+rm bin/a.json
+
+
+

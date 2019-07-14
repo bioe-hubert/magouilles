@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# eg.	./build_aps 32
+#	./build_aps 64
+
+# assemble and link
+riscv$1-unknown-elf-as		-Iaps -march=rv$1im -o bin/a.o   aps/startup$1.s
+riscv$1-unknown-elf-ld		-Map bin/aps$1.map  --script aps/aps.lds -o bin/a.elf bin/a.o
+riscv$1-unknown-elf-objcopy	-O binary bin/a.elf bin/aps$1.bin
+
+# clean up
+rm bin/a.o
+rm bin/a.elf
+
+# -------------------------------------------------------------
+# note: for 64-bit dis-assembly (don't do cleanup above...):
+#   riscv64-unknown-elf-objdump -m riscv -d bin/a.o
+#   riscv64-unknown-elf-objdump -m riscv -d bin/a.elf
+# -------------------------------------------------------------
+# note: gas uses addiw for 64-bit constants
+# -------------------------------------------------------------
+
