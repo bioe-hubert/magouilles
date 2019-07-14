@@ -16,7 +16,7 @@ It is a warm-up exercise consisting of RISC-V SOCs implemented on
 Lattice iCE40 FPGAs. Bidouille is expected to be a modified RISC-V SOC
 with 32-bit/64-bit interoperability (it may be skipped).
 Cafouille is expected to be a version of the 
-[Armpit Scheme](https://armpit.sourceforge.net)
+[Armpit Scheme](http://armpit.sourceforge.net)
 interpreter, that would run on the RV32IM andouille artifact.
 Depatouille, and followers, may improve on the interpreter,
 or progressively integrate Scheme functionality into the FPGA, or both.
