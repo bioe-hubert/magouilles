@@ -30,7 +30,7 @@ It is to be re-evaluated eagerly or lazily, and applied accordingly.
 
 [Bibliography of Scheme-related Research](https://github.com/scheme-live/bibliography)
 
-[Armpit Scheme](armpit.sourceforge.net)
+[Armpit Scheme](http://armpit.sourceforge.net)
 
 [LispmFPGA](http://www.aviduratas.de/lisp/lispmfpga/index.html)
 
