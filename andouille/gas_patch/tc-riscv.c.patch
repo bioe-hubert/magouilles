@@ -1,0 +1,93 @@
+--- gas/config/tc-riscv-orig.c	2019-05-11 02:22:54.259888400 -0400
++++ gas/config/tc-riscv-new.c	2019-05-14 15:01:05.078528700 -0400
+@@ -2590,6 +2590,81 @@
+       }
+ }
+ 
++/* Handle the .req pseudo-op.  */
++
++static void
++s_req (int x ATTRIBUTE_UNUSED)
++{
++  char *alias_name = input_line_pointer, save_c;
++  char *reg_name   = input_line_pointer, save_d;
++  struct regname *r;
++
++  while (!is_end_of_line[(unsigned char) *input_line_pointer])
++    ++input_line_pointer;
++  save_c = *input_line_pointer;
++  *input_line_pointer = '\0';
++
++  while (*reg_name != ',' && *reg_name != '\0') ++reg_name;
++  save_d = *reg_name;
++  *reg_name++ = '\0';
++
++//  if (!*alias_name || !*reg_name || save_d == '\0')
++  if (*alias_name == '\0' || *reg_name == '\0' || save_d == '\0')
++    as_bad (_("invalid syntax for .req directive"));
++  else
++    {
++      r = (struct regname *) hash_find (reg_names_hash, alias_name);
++      if (r != NULL)
++	as_bad (_("alias '%s' already defined (use .unreq)"), alias_name);
++      else
++        {
++	  r = (struct regname *) hash_find (reg_names_hash, reg_name);
++	  if (r == NULL)
++	    as_bad (_("unknown register '%s' for alias in .req"), reg_name);
++	  else
++	  {
++	    const char *name = xstrdup (alias_name);
++	    const char *retval = hash_insert(reg_names_hash, name, (void *) r);
++	    if (retval != NULL)
++	      as_fatal (_("internal error: can't hash `%s': %s"), name, retval);
++	  }
++	}
++    }
++
++  *--reg_name = save_d;
++  *input_line_pointer = save_c;
++  demand_empty_rest_of_line ();
++}
++
++/* Handle the .unreq pseudo-op.  */
++
++static void
++s_unreq (int x ATTRIBUTE_UNUSED)
++{
++  char *name = input_line_pointer, save_c;
++
++  while (!is_end_of_line[(unsigned char) *input_line_pointer])
++    ++input_line_pointer;
++  save_c = *input_line_pointer;
++  *input_line_pointer = '\0';
++
++  if (!*name)
++    as_bad (_("invalid syntax for .unreq directive"));
++  else
++    {
++      struct regname *r = (struct regname *) hash_find (reg_names_hash, name);
++      if (r == NULL)
++	as_bad (_("unknown register alias '%s' in .unreq"), name);
++      else // TODO: if (reg->builtin) ...
++        {
++	  as_warn (_("be sure not to use .unreq on built-in regs: '%s'"), name);
++	  hash_delete (reg_names_hash, name, FALSE);
++        }
++    }
++
++  *input_line_pointer = save_c;
++  demand_empty_rest_of_line ();
++}
+ 
+ /* This structure is used to hold a stack of .option values.  */
+ 
+@@ -3162,6 +3237,8 @@
+ static const pseudo_typeS riscv_pseudo_table[] =
+ {
+   /* RISC-V-specific pseudo-ops.  */
++  { "req",   s_req,	  0 },
++  { "unreq", s_unreq,	  0 },
+   {"option", s_riscv_option, 0},
+   {"half", cons, 2},
+   {"word", cons, 4},
