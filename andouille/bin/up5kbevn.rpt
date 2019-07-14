@@ -1,0 +1,103 @@
+
+icetime topological timing analysis report
+==========================================
+
+Info: max_span_hack is enabled: estimate is conservative.
+
+Report for critical path:
+-------------------------
+
+        lc40_18_16_3 (LogicCell40) [clk] -> lcout: 1.491 ns
+     1.491 ns net_69950 (rvsoc.reset_cnt[3])
+        t22577 (LocalMux) I -> O: 1.099 ns
+        inmux_18_16_73822_73894 (InMux) I -> O: 0.662 ns
+        lc40_18_16_7 (LogicCell40) in0 -> lcout: 1.285 ns
+     4.537 ns net_69954 ($abc$63045$new_n2897_)
+        t22583 (LocalMux) I -> O: 1.099 ns
+        inmux_17_16_70011_70022 (InMux) I -> O: 0.662 ns
+        lc40_17_16_0 (LogicCell40) in1 -> lcout: 1.232 ns
+     7.530 ns net_66116 (rvsoc.resetn)
+        odrv_17_16_66116_66149 (Odrv4) I -> O: 0.649 ns
+        t21535 (Span4Mux_h4) I -> O: 0.543 ns
+        t21534 (Span4Mux_h4) I -> O: 0.543 ns
+        t21533 (Span4Mux_h4) I -> O: 0.543 ns
+        t21537 (Span4Mux_v4) I -> O: 0.649 ns
+        t21536 (LocalMux) I -> O: 1.099 ns
+        inmux_4_18_21079_21121 (InMux) I -> O: 0.662 ns
+        lc40_4_18_4 (LogicCell40) in0 -> lcout: 1.285 ns
+    13.503 ns net_17196 ($abc$63045$new_n2914_)
+        odrv_4_18_17196_21154 (Odrv12) I -> O: 1.232 ns
+        t7224 (Span12Mux_v12) I -> O: 1.073 ns
+        t7223 (Span12Mux_h12) I -> O: 1.232 ns
+        t7222 (LocalMux) I -> O: 1.099 ns
+        inmux_10_6_41955_42001 (InMux) I -> O: 0.662 ns
+        lc40_10_6_4 (LogicCell40) in1 -> lcout: 1.232 ns
+    20.033 ns net_38075 ($abc$63045$new_ys__n2143_inv_)
+        odrv_10_6_38075_41926 (Odrv4) I -> O: 0.649 ns
+        t13985 (LocalMux) I -> O: 1.099 ns
+        inmux_11_7_45909_45972 (InMux) I -> O: 0.662 ns
+        lc40_11_7_7 (LogicCell40) in0 -> lcout: 1.285 ns
+    23.728 ns net_42032 ($abc$63045$new_n5083_)
+        t15032 (LocalMux) I -> O: 1.099 ns
+        inmux_12_8_49882_49910 (InMux) I -> O: 0.662 ns
+        t1867 (CascadeMux) I -> O: 0.000 ns
+        lc40_12_8_4 (LogicCell40) in2 -> lcout: 1.205 ns
+    26.695 ns net_45983 ($abc$63045$new_n5447_)
+        t15959 (LocalMux) I -> O: 1.099 ns
+        inmux_11_7_45917_45942 (InMux) I -> O: 0.662 ns
+        lc40_11_7_2 (LogicCell40) in0 -> lcout: 1.285 ns
+    29.741 ns net_42027 ($abc$63045$new_n6108_)
+        odrv_11_7_42027_34499 (Odrv4) I -> O: 0.649 ns
+        t15039 (Span4Mux_v4) I -> O: 0.649 ns
+        t15038 (LocalMux) I -> O: 1.099 ns
+        inmux_7_9_30820_30853 (InMux) I -> O: 0.662 ns
+        lc40_7_9_0 (LogicCell40) in1 -> lcout: 1.232 ns
+    34.033 ns net_27379 ($abc$63045$new_n6109_)
+        odrv_7_9_27379_27335 (Odrv4) I -> O: 0.649 ns
+        t10843 (Span4Mux_v4) I -> O: 0.649 ns
+        t10842 (Span4Mux_h4) I -> O: 0.543 ns
+        t10841 (Span4Mux_v4) I -> O: 0.649 ns
+        t10840 (Span4Mux_h4) I -> O: 0.543 ns
+        t10839 (LocalMux) I -> O: 1.099 ns
+        inmux_5_18_24912_24970 (InMux) I -> O: 0.662 ns
+        lc40_5_18_7 (LogicCell40) in0 -> lcout: 1.285 ns
+    40.112 ns net_21030 ($abc$63045$auto$memory_bram.cc:832:replace_cell$3987[1])
+        odrv_5_18_21030_13499 (Odrv4) I -> O: 0.649 ns
+        t8923 (Span4Mux_v4) I -> O: 0.649 ns
+        t8922 (LocalMux) I -> O: 1.099 ns
+        inmux_6_20_28599_28633 (InMux) I -> O: 0.662 ns
+    43.171 ns net_28633 ($abc$63045$auto$memory_bram.cc:832:replace_cell$3987[1])
+        ram_6_19 (SB_RAM40_4K) WDATA[1] [setup]: 0.305 ns
+    43.476 ns net_24983 (rvsoc.cpu0.cpu_rs2[25])
+
+Resolvable net names on path:
+     1.491 ns ..  3.252 ns rvsoc.reset_cnt[3]
+     4.537 ns ..  6.298 ns $abc$63045$new_n2897_
+     7.530 ns .. 12.219 ns rvsoc.resetn
+    13.503 ns .. 18.801 ns $abc$63045$new_n2914_
+    20.033 ns .. 22.444 ns $abc$63045$new_ys__n2143_inv_
+    23.728 ns .. 25.490 ns $abc$63045$new_n5083_
+    26.695 ns .. 28.457 ns $abc$63045$new_n5447_
+    29.741 ns .. 32.801 ns $abc$63045$new_n6108_
+    34.033 ns .. 38.827 ns $abc$63045$new_n6109_
+    40.112 ns .. 43.171 ns $abc$63045$auto$memory_bram.cc:832:replace_cell$3987[1]
+               RDATA[0] -> rvsoc.cpu0.cpu_rs2[16]
+              RDATA[10] -> rvsoc.cpu0.cpu_rs2[26]
+              RDATA[11] -> rvsoc.cpu0.cpu_rs2[27]
+              RDATA[12] -> rvsoc.cpu0.cpu_rs2[28]
+              RDATA[13] -> rvsoc.cpu0.cpu_rs2[29]
+              RDATA[14] -> rvsoc.cpu0.cpu_rs2[30]
+              RDATA[15] -> rvsoc.cpu0.cpu_rs2[31]
+               RDATA[1] -> rvsoc.cpu0.cpu_rs2[17]
+               RDATA[2] -> rvsoc.cpu0.cpu_rs2[18]
+               RDATA[3] -> rvsoc.cpu0.cpu_rs2[19]
+               RDATA[4] -> rvsoc.cpu0.cpu_rs2[20]
+               RDATA[5] -> rvsoc.cpu0.cpu_rs2[21]
+               RDATA[6] -> rvsoc.cpu0.cpu_rs2[22]
+               RDATA[7] -> rvsoc.cpu0.cpu_rs2[23]
+               RDATA[8] -> rvsoc.cpu0.cpu_rs2[24]
+               RDATA[9] -> rvsoc.cpu0.cpu_rs2[25]
+
+Total number of logic levels: 10
+Total path delay: 43.48 ns (23.00 MHz)
+

@@ -1,0 +1,31 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+
+.text           0x0000000000000000      0x6b4
+                0x0000000000000000                _startcode = .
+ *(.text)
+ .text          0x0000000000000000      0x6b4 bin/a.o
+                0x0000000000000020                isren
+                0x00000000000006b4                _endcode = .
+
+.data           0x0000000020000000       0x80 load address 0x0000000000000740
+                0x0000000020000000                _startdata = .
+ *(.data)
+ .data          0x0000000020000000       0x80 bin/a.o
+                0x0000000020000080                _enddata = .
+LOAD bin/a.o
+OUTPUT(bin/a.elf elf32-littleriscv)
+
+.bss            0x0000000020000080        0x0 load address 0x00000000000007c0
+ .bss           0x0000000020000080        0x0 bin/a.o
+
+.riscv.attributes
+                0x0000000000000000       0x1f
+ .riscv.attributes
+                0x0000000000000000       0x1f bin/a.o
